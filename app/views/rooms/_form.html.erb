@@ -1,0 +1,99 @@
+<%= form_with(model: room) do |form| %>
+  <% if room.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(room.errors.count, "error") %> prohibited this room from being saved:</h2>
+
+      <ul>
+        <% room.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-2">
+    <%= form.file_field :room_picture %>
+  </div>
+
+  <div>
+    <%= form.label :room_name, style: "display: block" %>
+    <%= form.text_field :room_name %>
+  </div>
+
+  <div>
+    <%= form.label :room_size, style: "display: block" %>
+    <%= form.text_field :room_size, placeholder: "220 sqft" %>
+  </div>
+
+  <div>
+    <%= form.label :room_class, style: "display: block" %>
+    <%= form.select :room_class, ["Single", "Double", "Triple", "Qadruple", "Standard", "Superior", "Delux", "Suite", "Presidential Suite" ] %>
+  </div>
+
+  <div>
+    <%= form.label :room_status, style: "display: block" %>
+    <%= form.select :room_status, ["Available", "Coming soon"] %>
+  </div>
+
+  <div>
+    <%= form.label :room_address, style: "display: block" %>
+    <%= form.text_field :room_address, placeholder: "123 Main St" %>
+  </div>
+
+  <div>
+    <%= form.label :room_city, style: "display: block" %>
+    <%= form.text_field :room_city %>
+  </div>
+
+  <div>
+    <%= form.label :room_state, style: "display: block" %>
+    <%= form.select :room_state, [ "AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA", "HI", 
+        "ID", "IL", "IL", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE",
+        "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", 
+        "UT", "VT", "VA", "WA", "WV", "WI", "WY" ] %>
+  </div>
+
+  <div>
+    <%= form.label :room_zip, style: "display: block" %>
+    <%= form.text_field :room_zip %>
+  </div>
+
+  <div>
+    <%= form.label :room_country, style: "display: block" %>
+    <%= form.text_field :room_country %>
+  </div>
+
+  <div>
+    <%= form.label :room_price, style: "display: block" %>
+    <%= form.text_field :room_price %>
+  </div>
+
+  <div>
+    <%= form.label :room_smoke, style: "display: block" %>
+    <%= form.select :room_smoke, ["No smoking", "Smoking"] %>
+  </div>
+
+  <div>
+    <%= form.label :number_of_beds, style: "display: block" %>
+    <%= form.select :number_of_beds, ["1", "2", "3", "4", "5", "6", "8", "9"] %>
+  </div>
+
+  <div>
+    <%= form.label :bed_size, style: "display: block" %>
+    <%= form.select :bed_size, ["Twin", "Twin XL", "Double", "Full XL", "Queen", "Olympic Queen", "King", "California King"] %>
+  </div>
+
+  <div>
+    <%= form.label :room_phone, style: "display: block" %>
+    <%= form.text_field :room_phone %>
+  </div>
+  
+  <div>
+    <%= form.label :room_description, style: "display: block" %>
+    <%= form.text_area :room_description %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
