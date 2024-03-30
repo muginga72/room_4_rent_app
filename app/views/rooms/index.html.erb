@@ -1,0 +1,94 @@
+<%= render partial: 'shared/navbar' %>
+
+<%= render partial: 'shared/banner' %> <!-- has sign up and login buttons -->
+
+<%= render partial: 'shared/search_for_room' %>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-8">
+      <h1 id="available" class="display-6 my-3 text-white">Available Rooms</h1>
+      <div class="">
+        <div class="row">
+          <% if @rooms %>
+            <% @rooms.each do |room| %>
+              <div class="col-sm-6 col-md-6 d-flex align-items-stretch" style="margin-left: 0px; margin-bottom: 20px">
+                <div class="card">
+                  <%= image_tag "IMG_3668.JPG", class: "rounded-top" %>
+                  <div class="card-body">
+                    <ul class="list-inline">
+                      <li>
+                        <strong>Name</strong>: <%= room.room_name %>     |
+                        <strong>Class</strong>: <%= room.room_class %>    |
+                        <strong>Pice</strong>: $<%= room.room_price %>    |
+                        <strong>Bed(s)</strong>: <%= room.number_of_beds %>     
+                      </li>
+                    </ul>
+                    <address>
+                      <h6>Address</h6>
+                      <%= room.room_address %>, <%= room.room_city %>, <%= room.room_state %>, <%= room.room_zip %>, <%= room.room_country %><br>
+                    </address>
+                    <div style="display: flex; space-between">
+                      <h6 class="card-title">Description </h6>
+
+                      <% if room.room_status == "Available" %>
+                        <div style="background-color: #75b798; color: white; border-radius: 8px; margin-left: 20px">
+                          <span class="badge badge-secondary">Available</span>
+                        </div>
+                      <% else %>
+                        <div style="background-color: #e09a61; color: white; border-radius: 8px; margin-left: 20px">
+                          <span class="badge badge-secondary">Coming soon!</span>
+                        </div>
+                      <% end %>
+                    </div>
+                    <blockquote>
+                      <p><%= room.room_description %></p>
+                    </blockquote>
+
+                    <div style="display: flex">
+                      <!-- Add comment to specific room_id 
+                      <% if @comments %>
+                        <%= link_to "Show Comment", comment, class: "no-underline" %>
+                      <% else %>
+                        <%= link_to "Add Comment", class: "no-underline" %>
+                      <% end %>
+
+                      Display comment count on the badge 
+                      <div class="badge_comments">
+                        <% if @comments %>
+                          <%= room.comments.count %> 
+                        <% else %>
+                          <p>0</p>
+                        <% end %>
+                      </div>-->
+                    </div>
+                  </div>
+                  <div class="card-footer">
+                    <p>
+                      <%= link_to "Show", room, class: "btn btn-outline-primary" %> 
+                        
+                      <!-- this link to allows user to create a booking from the cards -->
+                      <%= link_to "Book", class: "btn btn-outline-success" %>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+            <% else %>
+              <p class="btn btn-primary" style="margin: 40px"> No rooms available</p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <!-- rendering booked rooms -->
+    <%= render partial: 'shared/booked_rooms' %>
+
+  </div>
+</div>
+
+<!-- rendering coming soon -->
+<%= render partial: 'shared/coming_soon' %>
+
+<!-- rendering the footer -->
+<%= render partial: 'shared/footer' %>
