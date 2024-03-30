@@ -1,0 +1,14 @@
+<!-- filter the room based on the availability -->
+<div class="container-fluid m-0" style="background-color: #dee2e6">
+  <div>
+    <div class="text-center my-0 text-muted">
+      <%= form_tag(rooms_path, method: :get) do %>
+        <%= label_tag(:check_in, "Check in:") %>
+        <%= date_field_tag(:check_in) %>
+        <%= label_tag(:check_out, "Check out:") %>
+        <%= date_field_tag(:check_out) %>
+        <%= submit_tag("Search for Room", class: "btn btn-outline-primary m-3") %>
+      <% end %>
+    </div>
+  </div>
+</div> <!-- /filter the room based on the availability -->

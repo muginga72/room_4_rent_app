@@ -1,0 +1,38 @@
+<!-- app/views/shared/_banner.html.erb -->
+
+<div class="bsb-hero-5 px-3 bsb-overlay banner-background-image">
+  <div class="container-fluid">
+    <div class="row justify-content-md-center align-items-center">
+      <div class="col-12 col-md-11 col-lg-9 col-xl-8 col-xxl-7">
+        <h2 class="display-1 text-white text-center fw-bold mt-5" style="color: #3949AB">
+          Welcome to R4R App!
+        </h2>
+        <p class="lead text-white text-center mb-2 d-flex justify-content-sm-center">
+          <span class="col-12 col-sm-10 col-md-8 col-xxl-7">Find your perfect room, make it your own!</span>
+        </p>
+
+        <!-- Conditional content based on user authentication -->
+        <% if user_signed_in? %>
+          <div style="display: flex;" class="justify-content-sm-center mb-2">
+            <h2 style="margin-top: 50px; margin-bottom: 30px">You're logged in as <%= current_user.email %>!</h2>
+          </div>
+          <div style="display: flex; gap: 10px;" class="justify-content-sm-center mb-5">
+            <div class="d-grid gap-2 d-sm-flex">
+              <%= link_to "Logout", destroy_user_session_path, method: :delete, data: { turbo_method: :delete }, class: "btn btn-danger" %>
+              <%= link_to "Edit Registration", edit_user_registration_path, class: "btn btn-primary" %>
+            </div>
+          </div>
+        <% else %>
+          <div style="display: flex; gap: 10px;" class="justify-content-sm-center mb-5">
+            <div class="d-grid gap-2 d-sm-flex">
+              <%= link_to "Sign up", new_user_registration_path, class: "btn btn-success" %>
+            </div>
+            <div>
+              <%= link_to "Login", new_user_session_path, class: "btn btn-primary" %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

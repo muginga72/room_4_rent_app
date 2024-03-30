@@ -1,0 +1,50 @@
+<!-- navbar for login page-->
+<nav class="navbar navbar-info bg-info fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand text-white" href="#">
+      <%= image_tag "R4R-App-logo_v01-24.JPG", class:"rounded float-start" %>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="offcanvas offcanvas-end text-bg-info" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">R4R offcanvas</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+          <li class="nav-item">
+            <%= link_to "Home", root_path, class: "dropdown-item" %>
+            <%= link_to "Users", pages_users_path, class: "dropdown-item" %>
+            <%= link_to "Logout", destroy_user_session_path, method: :delete, data: { turbo_method: :delete }, class: "dropdown-item" %><br>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Room
+            </a>
+
+            <ul class="dropdown-menu dropdown-menu-light">
+              <%= link_to "List rooms", rooms_path, class: "dropdown-item" %>
+              <%= link_to "Create room", new_room_path, class: "dropdown-item" %>
+            </ul>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Booking
+            </a>
+            <ul class="dropdown-menu dropdown-menu-light">
+              <!-- booking links -->
+            </ul>
+          </li>
+        </ul>
+        <form class="d-flex mt-3" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-success" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</nav> <!-- /navbar for login page-->

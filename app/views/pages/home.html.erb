@@ -1,0 +1,30 @@
+<div>
+  <div class="container">
+    <%= link_to "Home", root_path %>
+    
+    <!-- welcome page -->
+    <div class="landing-page-image">
+      <div class="container-fluid">
+        <div class="row justify-content-md-center align-items-center">
+          <div class="col-12">
+            <h2 class="display-1 text-white text-center fw-bold mt-3">
+              Welcome to R4R App!
+            </h2>
+            <p class="lead text-center mb-5 d-flex justify-content-sm-center">
+              <span class="col-12"><strong>Find your perfect room, make it your own!</strong></span>
+            </p>
+
+            <!-- rendering the registration session -->
+            <%= render partial: 'shared/registration' %>
+
+          </div>
+        </div>
+      </div>
+    </div> <!-- /welcome page -->
+  </div>
+</div> 
+
+<!-- rendering the footer -->
+<div class="fixed-bottom">
+  <%= render partial: 'shared/footer' %>
+</div>
