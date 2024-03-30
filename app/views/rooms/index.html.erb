@@ -14,19 +14,25 @@
             <% @rooms.each do |room| %>
               <div class="col-sm-6 col-md-6 d-flex align-items-stretch" style="margin-left: 0px; margin-bottom: 20px">
                 <div class="card">
-                  <%= image_tag "IMG_3668.JPG", class: "rounded-top" %>
+                  <% if room.room_picture.present? %>
+                    <%= image_tag room.room_picture, class: "rounded-top" %>
+                  <% else %>
+                    <%= image_tag "Landing-page_v02-24.JPG", class: "rounded-top" %>
+                  <% end %>
                   <div class="card-body">
                     <ul class="list-inline">
                       <li>
                         <strong>Name</strong>: <%= room.room_name %>     |
                         <strong>Class</strong>: <%= room.room_class %>    |
                         <strong>Pice</strong>: $<%= room.room_price %>    |
-                        <strong>Bed(s)</strong>: <%= room.number_of_beds %>     
+                        <strong>Bed<small>(s)</small></strong>: <%= room.number_of_beds %>     
                       </li>
                     </ul>
                     <address>
-                      <h6>Address</h6>
+                      <small>
+                      <%# <h6>Address</h6> %>
                       <%= room.room_address %>, <%= room.room_city %>, <%= room.room_state %>, <%= room.room_zip %>, <%= room.room_country %><br>
+                      </small>
                     </address>
                     <div style="display: flex; space-between">
                       <h6 class="card-title">Description </h6>

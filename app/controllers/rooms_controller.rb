@@ -9,6 +9,7 @@ class RoomsController < ApplicationController
 
   # GET /rooms/1 or /rooms/1.json
   def show
+    @room = Room.find(params[:id])
   end
 
   # GET /rooms/new
@@ -18,12 +19,16 @@ class RoomsController < ApplicationController
 
   # GET /rooms/1/edit
   def edit
+    unless @room.user == current_user
+      flash[:alert] = "You cannot edit someone else's room."
+      redirect_to rooms_path
+    end
   end
 
   # POST /rooms or /rooms.json
   def create
     @room = Room.new(room_params)
-
+    @room.user_id = current_user.id # Set the user_id
     respond_to do |format|
       if @room.save
         format.html { redirect_to room_url(@room), notice: "Room was successfully created." }
@@ -52,11 +57,15 @@ class RoomsController < ApplicationController
 
   # DELETE /rooms/1 or /rooms/1.json
   def destroy
-    @room.destroy!
+    if @room.user == current_user
+      @room.destroy!
 
-    respond_to do |format|
-      format.html { redirect_to rooms_url, notice: "Room was successfully destroyed." }
-      format.json { head :no_content }
+      respond_to do |format|
+        format.html { redirect_to rooms_url, notice: "Room was successfully deleted." }
+        format.json { head :no_content }
+      end
+    else
+      redirect_to rooms_path
     end
   end
 
@@ -64,12 +73,14 @@ class RoomsController < ApplicationController
 
     # Use callbacks to share common setup or constraints between actions.
     def set_room
-      @room = Room.find(params[:id])
+      # @room = Room.find(params[:id])
+      @room = Room.find_by(id: params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def room_params
       params.require(:room).permit(
+        :user_id,
         :room_name, 
         :room_size, 
         :room_class, 

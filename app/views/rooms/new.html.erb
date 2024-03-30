@@ -1,9 +1,15 @@
-<h1>New room</h1>
+<div id="new_room" class="pages_index_background">
+  <div class="container">
+    <h1 id="new_room_title" class="display-4 text-center text-muted">New Room</h1>
 
-<%= render "form", room: @room %>
+    <%= render "form", room: @room %>
 
-<br>
+    <br>
 
-<div>
-  <%= link_to "Back to rooms", rooms_path %>
+    <div id="new_room">
+      <%= link_to "Back", rooms_path, class: "btn btn-secondary m-2" %>
+    </div>
+  </div>
 </div>
+
+<%= render partial: 'shared/footer' %>
