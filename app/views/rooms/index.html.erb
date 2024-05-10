@@ -21,12 +21,11 @@
                         <strong>Name</strong>: <%= room.room_name %>     |
                         <strong>Class</strong>: <%= room.room_class %>    |
                         <strong>Pice</strong>: $<%= room.room_price %>    |
-                        <strong>Bed(s)</strong>: <%= room.number_of_beds %>     
+                        <strong><i class='fas fa-bed' style='font-size:18px'></i></strong>: <%= room.number_of_beds %>     
                       </li>
                     </ul>
                     <address>
-                      <h6>Address</h6>
-                      <%= room.room_address %>, <%= room.room_city %>, <%= room.room_state %>, <%= room.room_zip %>, <%= room.room_country %><br>
+                      <%= room.room_address %>, <%= room.room_city %>, <%= room.room_state %>. <i class="fa fa-phone-square" style="font-size:24px;color:blue"></i> <%= room.room_phone %><br>
                     </address>
                     <div style="display: flex; space-between">
                       <h6 class="card-title">Description </h6>
