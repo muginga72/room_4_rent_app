@@ -23,6 +23,7 @@ class RoomsController < ApplicationController
   # POST /rooms or /rooms.json
   def create
     @room = Room.new(room_params)
+    @room.user_id = current_user.id
 
     respond_to do |format|
       if @room.save
@@ -70,6 +71,7 @@ class RoomsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def room_params
       params.require(:room).permit(
+        :user_id,
         :room_name, 
         :room_size, 
         :room_class, 
