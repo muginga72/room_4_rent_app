@@ -1,10 +1,15 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @room %>
+<div id="room_details" class="pages_index_background">
+  <div class="container">
+    <h1 id="room_details" class="display-4 text-center">Room Details</h1>
+    <%= render @room %>
 
-<div>
-  <%= link_to "Edit this room", edit_room_path(@room) %> |
-  <%= link_to "Back to rooms", rooms_path %>
+    <div>
+      <%= link_to "Edit this room", edit_room_path(@room), class: "btn btn-primary" %> |
+      <%= link_to "Back to rooms", rooms_path, class: "btn btn-secondary" %>
 
-  <%= button_to "Destroy this room", @room, method: :delete %>
+      <%= button_to "Destroy this room", @room, method: :delete, class: "btn btn-danger my-3" %>
+    </div>
+  </div>
 </div>
