@@ -36,7 +36,9 @@
             </a>
             <ul class="dropdown-menu dropdown-menu-light">
               <!-- booking links -->
-              <%= link_to "Back to bookings", room_bookings_path(@room), class: "dropdown-item" %> 
+              <% if @booking.present? %>
+                <%= link_to "Back to bookings", room_bookings_path(@booking), class: "dropdown-item" %>
+              <% end %>
             </ul>
           </li>
         </ul>
