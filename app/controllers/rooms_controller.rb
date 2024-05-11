@@ -42,9 +42,21 @@ class RoomsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /rooms/1 or /rooms/1.json
+  # # PATCH/PUT /rooms/1 or /rooms/1.json
+  # def update
+  #   @room = Room.find_by(params[:id])
+  #   respond_to do |format|
+  #     if @room.update(room_params)
+  #       format.html { redirect_to room_url(@room), notice: "Room was successfully updated." }
+  #       format.json { render :show, status: :ok, location: @room }
+  #     else
+  #       format.html { render :edit, status: :unprocessable_entity }
+  #       format.json { render json: @room.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
+
   def update
-    @room = Room.find_by(params[:id])
     respond_to do |format|
       if @room.update(room_params)
         format.html { redirect_to room_url(@room), notice: "Room was successfully updated." }
