@@ -1,0 +1,11 @@
+<%= form_with(model: [@room, @booking], local: true) do |form| %>
+  <h1>New booking</h1>
+
+  <%= render "form", booking: @booking %>
+
+  <br>
+
+  <div>
+    <%= link_to "Back to bookings", bookings_path, class: "btn btn-secondary" %>
+  </div>
+<% end %>

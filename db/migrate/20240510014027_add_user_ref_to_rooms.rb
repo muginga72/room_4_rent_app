@@ -1,5 +1,4 @@
 class AddUserRefToRooms < ActiveRecord::Migration[7.1]
-  // modify the up method to set the user_id for existing rooms:
   def up
     add_reference :rooms, :user, index: true
   

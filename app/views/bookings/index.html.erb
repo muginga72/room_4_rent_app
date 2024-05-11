@@ -1,0 +1,46 @@
+<%= render partial: 'shared/navbar' %>
+
+<%= render partial: 'shared/banner' %> <!-- has sign up and login buttons -->
+
+<%= render partial: 'shared/search_for_room' %>
+
+<p style="color: green"><%= notice %></p>
+
+<h1 id="list_bookings" class="display-4 text-center my-3">Booked Room(s)</h1>
+<div class="container-fluid mt-3">
+  <div class="row">
+    <div class="col-lg table-responsive">
+      <table class="table ml-2">
+        <thead>
+          <tr class="table-active">
+            <th>Room Address</th>
+            <th>City</th>
+            <th>Check In</th>
+            <th>Check Out</th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @bookings.each do |booking| %> <!-- Loop through the bookings -->
+            <tr>
+              <td><%= booking.rooms %></td> <!-- rooms method allow the booking to access the room_address -->
+              <td><%= booking.city  %></td> <!-- city method allow the booking to access the room_city -->
+              <td><%= booking.check_in %></td> 
+              <td><%= booking.check_out %></td>
+              <td><%= button_to 'Show', booking, method: :get, class: 'btn btn-outline-primary' %></td>
+            </tr>
+            <%# render partial delete here!!  %>
+          <% end %>
+        </tbody>
+      </table> 
+    </div>
+  </div>
+</div>
+
+<%# <%= link_to "New booking", new_booking_path %>
+
+<!-- rendering coming soon -->
+<%= render partial: 'shared/coming_soon' %>
+
+<!-- rendering the footer -->
+<%= render partial: 'shared/footer' %>

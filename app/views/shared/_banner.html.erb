@@ -20,6 +20,16 @@
             <div class="d-grid gap-2 d-sm-flex">
               <%= link_to "Logout", destroy_user_session_path, method: :delete, data: { turbo_method: :delete }, class: "btn btn-danger" %>
               <%= link_to "Add New Room", new_room_path, class: "btn btn-success" %>
+              
+              <%# Implement conditions to show/hide my booking button %>
+              <% unless controller_name == "bookings" && action_name == "index" %>
+                <%= link_to "My Bookings", bookings_path, class: "btn btn-info" %>
+              <% end %>
+              
+              <%# Implement conditions to show/hide the list room button %>
+              <% unless controller_name == "rooms" && action_name == "index" %>
+                <%= link_to "Back to rooms", rooms_path, class: "btn btn-secondary" %>
+              <% end %>
             </div>
           </div>
         <% else %>
