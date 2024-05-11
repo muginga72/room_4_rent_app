@@ -14,7 +14,7 @@
             <% @rooms.each do |room| %>
               <div class="col-sm-6 col-md-6 d-flex align-items-stretch" style="margin-left: 0px; margin-bottom: 20px">
                 <div class="card">
-                  <%= image_tag "IMG_3668.JPG", class: "rounded-top" %>
+                  <%= image_tag room.room_picture, class: "rounded-top" if room.room_picture.attached? %>
                   <div class="card-body">
                     <ul class="list-inline">
                       <li>
@@ -29,7 +29,6 @@
                     </address>
                     <div style="display: flex; space-between">
                       <h6 class="card-title">Description </h6>
-
                       <% if room.room_status == "Available" %>
                         <div style="background-color: #75b798; color: white; border-radius: 8px; margin-left: 20px">
                           <span class="badge badge-secondary">Available</span>
@@ -43,7 +42,6 @@
                     <blockquote>
                       <p><%= room.room_description %></p>
                     </blockquote>
-
                     <div style="display: flex">
                       <!-- Add comment to specific room_id 
                       <% if @comments %>
@@ -51,7 +49,6 @@
                       <% else %>
                         <%= link_to "Add Comment", class: "no-underline" %>
                       <% end %>
-
                       Display comment count on the badge 
                       <div class="badge_comments">
                         <% if @comments %>
@@ -82,7 +79,6 @@
 
     <!-- rendering booked rooms -->
     <%= render partial: 'shared/booked_rooms' %>
-
   </div>
 </div>
 

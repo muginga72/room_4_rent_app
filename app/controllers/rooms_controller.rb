@@ -5,6 +5,7 @@ class RoomsController < ApplicationController
   # GET /rooms or /rooms.json
   def index
     @rooms = Room.all
+    @room = Room.find_by(params[:id]) # Or however you retrieve the room
   end
 
   # GET /rooms/1 or /rooms/1.json
@@ -18,11 +19,17 @@ class RoomsController < ApplicationController
 
   # GET /rooms/1/edit
   def edit
+    unless @room.user == current_user
+      flash[:alert] = "You cannot edit someone else's room."
+      redirect_to rooms_path
+    end
   end
 
   # POST /rooms or /rooms.json
   def create
     @room = Room.new(room_params)
+    @room.user_id = current_user.id
+    @room.room_picture.attach(params[:room][:room_picture]) if params[:room] && params[:room][:room_picture]
 
     respond_to do |format|
       if @room.save
@@ -35,10 +42,21 @@ class RoomsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /rooms/1 or /rooms/1.json
+  # # PATCH/PUT /rooms/1 or /rooms/1.json
+  # def update
+  #   @room = Room.find_by(params[:id])
+  #   respond_to do |format|
+  #     if @room.update(room_params)
+  #       format.html { redirect_to room_url(@room), notice: "Room was successfully updated." }
+  #       format.json { render :show, status: :ok, location: @room }
+  #     else
+  #       format.html { render :edit, status: :unprocessable_entity }
+  #       format.json { render json: @room.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
+
   def update
-    @room = Room.find_by(params[:id])
-    @room.room_picture.attach(params[:room_picture])
     respond_to do |format|
       if @room.update(room_params)
         format.html { redirect_to room_url(@room), notice: "Room was successfully updated." }
@@ -70,6 +88,7 @@ class RoomsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def room_params
       params.require(:room).permit(
+        :user_id,
         :room_name, 
         :room_size, 
         :room_class, 
