@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  resources :rooms
+  resources :bookings
+  resources :rooms do
+    resources :bookings, only: [:new, :create, :index, :show]
+  end
   root "pages#home"
   devise_for :users, controllers: {
         sessions: 'users/sessions',

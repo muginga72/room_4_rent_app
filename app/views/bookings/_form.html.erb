@@ -1,0 +1,28 @@
+<%= form_for(@booking) do |form| %>
+  <%= form.hidden_field :user_id, value: current_user.id %>
+  <% if booking.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(booking.errors.count, "error") %> prohibited this booking from being saved:</h2>
+
+      <ul>
+        <% booking.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :check_in, style: "display: block" %>
+    <%= form.date_field :check_in %>
+  </div>
+
+  <div>
+    <%= form.label :check_out, style: "display: block" %>
+    <%= form.date_field :check_out %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
