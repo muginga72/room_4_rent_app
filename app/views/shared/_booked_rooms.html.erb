@@ -5,7 +5,6 @@
         <% @bookings.each do |booking| %>
           <div class="card">
             <%= image_tag booking.room.room_picture, class: "rounded-top" %>
-            <!-- <%= image_tag "Bedroom-5.jpg", class: "rounded-top" %> -->
             <div class="card-body">
               <h5 class="card-title"><%= booking.room.room_description %></h5>
               <address>
