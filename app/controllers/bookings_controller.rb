@@ -22,6 +22,12 @@ class BookingsController < ApplicationController
   def new
     @room = Room.find(params[:room_id])
     @booking = @room.bookings.new
+
+    # Check if the user is logged in
+    unless current_user
+      flash[:notice] = "Please log in to book a room."
+      redirect_to new_user_session_path
+    end
   end
 
   # GET /bookings/1/edit
