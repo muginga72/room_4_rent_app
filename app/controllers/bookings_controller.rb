@@ -1,4 +1,5 @@
 class BookingsController < ApplicationController
+  before_action :authenticate_user! # Ensure user is logged in
   before_action :set_booking, only: %i[ show edit update destroy ]
   before_action :set_room, only: [:new, :create]
 
@@ -33,18 +34,26 @@ class BookingsController < ApplicationController
 
   # POST /bookings or /bookings.json
   def create
-    @booking = Booking.new(booking_params)
-    @booking.user = current_user # Assuming you have a method to get the currently logged-in user
-    @booking = @room.bookings.new(booking_params)
-
-    respond_to do |format|
-      if @booking.save
-        format.html { redirect_to booking_url(@booking), notice: "Booking was successfully created." }
-        format.json { render :show, status: :created, location: @booking }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @booking.errors, status: :unprocessable_entity }
+    @room = Room.find(params[:room_id])
+  
+    if @room.can_be_booked?
+      @booking = @room.bookings.new(booking_params)
+      @booking.user = current_user # Assuming you have a method to get the currently logged-in user
+  
+      respond_to do |format|
+        if current_user == @room.owner
+          format.html { redirect_to @room, alert: "You cannot book your own room." }
+        elsif @booking.save
+          format.html { redirect_to booking_url(@booking), notice: "Booking was successfully created." }
+          format.json { render :show, status: :created, location: @booking }
+        else
+          format.html { render :new, status: :unprocessable_entity }
+          format.json { render json: @booking.errors, status: :unprocessable_entity }
+        end
       end
+    else
+      flash[:alert] = "This room is coming soon and cannot be booked yet."
+      redirect_to @room
     end
   end
 
