@@ -4,9 +4,6 @@ class BookingsController < ApplicationController
 
   # GET /bookings or /bookings.json
   def index
-    # @room = Room.find_by(params[:room_id])
-    # @bookings = Booking.all
-    
     if params[:user] # if the user parameter is present and true
       @bookings = Booking.by_user(current_user) # show only the bookings of the current user
     else
@@ -35,43 +32,18 @@ class BookingsController < ApplicationController
   end
 
   # POST /bookings or /bookings.json
-  # def create
-  #   @booking = Booking.new(booking_params)
-  #   @booking.user = current_user # Assuming you have a method to get the currently logged-in user
-  #   @booking = @room.bookings.new(booking_params)
-
-  #   respond_to do |format|
-  #     if @booking.save
-  #       format.html { redirect_to booking_url(@booking), notice: "Booking was successfully created." }
-  #       format.json { render :show, status: :created, location: @booking }
-  #     else
-  #       format.html { render :new, status: :unprocessable_entity }
-  #       format.json { render json: @booking.errors, status: :unprocessable_entity }
-  #     end
-  #   end
-  # end
   def create
-    @room = Room.find_by(params[:room_id])
+    @booking = Booking.new(booking_params)
+    @booking.user = current_user # Assuming you have a method to get the currently logged-in user
+    @booking = @room.bookings.new(booking_params)
 
-    if @room.owner == current_user
-      flash[:alert] = "You cannot book your own room."
-      redirect_to rooms_path
-
-    elsif @room.coming_soon == "Coming soon" # check if the room its coming soon and prevent the booking
-      flash[:alert] = "This room is coming soon and cannot be booked yet."
-      redirect_to rooms_path
-
-    else
-      @booking = Booking.new(booking_params) # create a new booking with the submitted parameters
-      @booking.user_id = current_user.id # assign the current user as the guest
-
-      if @booking.save # save the booking and redirect to the confirmation page
-        @booking.room.update(booked: true) # mark the room as booked
-        redirect_to booking_path(@booking), notice: "Your booking was successfully created."
-
+    respond_to do |format|
+      if @booking.save
+        format.html { redirect_to booking_url(@booking), notice: "Booking was successfully created." }
+        format.json { render :show, status: :created, location: @booking }
       else
-        flash[:error] = 'Error creating booking!'
-        render :new # render the new booking form with validation errors
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @booking.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -103,9 +75,6 @@ class BookingsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    # def set_booking
-    #   @booking = Booking.find(params[:id])
-    # end
     def set_booking
       if params[:id].present? && params[:id].to_i > 0
         @booking = Booking.find_by(params[:id])
