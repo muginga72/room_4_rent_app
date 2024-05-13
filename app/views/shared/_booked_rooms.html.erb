@@ -1,28 +1,29 @@
 <!-- booked rooms session -->
-    <div class="col-4">
-      <h1 id="available" class="display-6 text-center my-3 text-white">Booked Rooms</h1>
-      <% if @bookings %>
-        <% @bookings.each do |booking| %>
-          <div class="card">
-            <%= image_tag booking.room.room_picture, class: "rounded-top" %>
-            <div class="card-body">
-              <h5 class="card-title"><%= booking.room.room_description %></h5>
-              <address>
-                <%= booking.room.room_address %>, <%= booking.room.room_city %>, 
-                <%= booking.room.room_state %><br>
-              </address>
-              <%= link_to "Check this one!", bookings_path(current_user), class: "btn btn-outline-primary" %>
-            </div>
-          </div>
-        <% end %>
-      <% else %>
-        <div class="card mb-3">
-        <%= image_tag "bedroom-1.jpg", class: "rounded-top" %>
-          <div class="card-body ">
-            <h5 class="card-title">Beautiful studio</h5>
-            <p class="card-text">The room will be ready for occupancy soon, so keep an eye out for this fantastic opportunity!</p>
-            <!-- booking links goes here -->
-          </div>
+<div class="col-4">
+  <h1 id="available" class="display-6 text-center my-3 text-muted">Booked Rooms</h1>
+  <% if @bookings.present? %>
+    <% @bookings.each do |booking| %>
+      <div class="card" style="margin-bottom: 20px">
+        <%= image_tag booking.room.room_picture, class: "rounded-top" %>
+        <div class="card-body">
+          <h5 class="card-title"><%= booking.room.room_description %></h5>
+          <address>
+            <%= booking.room.room_address %>, <%= booking.room.room_city %>,
+            <%= booking.room.room_state %><br>
+          </address>
+          <%= link_to "Check this one!", bookings_path(current_user), class: "btn btn-outline-primary" %>
         </div>
-      <% end %>
-    </div><!-- /booked rooms session -->
+      </div>
+    <% end %>
+  <% else %>
+    <div class="card mb-3">
+      <%= image_tag "Landing-page_v02-24.JPG", class: "rounded-top" %>
+      <div class="card-body">
+        <h5 class="card-title">Beautiful studio</h5>
+        <p class="card-text">The room will be ready for occupancy soon, so keep an eye out for this fantastic opportunity!</p>
+        <!-- booking links go here -->
+      </div>
+    </div>
+  <% end %>
+</div> 
+<!-- /booked rooms session -->
