@@ -57,7 +57,7 @@ class RoomsController < ApplicationController
         format.json { render json: @room.errors, status: :unprocessable_entity }
       end
     end
-  end
+  end  
 
   # # PATCH/PUT /rooms/1 or /rooms/1.json
   def update
