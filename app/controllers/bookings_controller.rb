@@ -1,5 +1,4 @@
 class BookingsController < ApplicationController
-  before_action :authenticate_user! # Assuming you're using Devise or similar
   before_action :set_booking, only: %i[ show edit update destroy ]
   before_action :set_room, only: [:new, :create]
 
