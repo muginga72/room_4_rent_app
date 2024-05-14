@@ -68,7 +68,7 @@ class BookingsController < ApplicationController
     @booking = Booking.find(params[:id])
 
     # Only allows deletion if the current user owns the booking
-    if current_user.admin?
+    if current_user.admin? || current_user == @booking.user
       @booking.destroy
       respond_to do |format|
         format.html { redirect_to bookings_url, notice: "Booking was successfully destroyed." }
