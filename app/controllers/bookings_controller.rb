@@ -1,4 +1,5 @@
 class BookingsController < ApplicationController
+  before_action :authenticate_user! # Assuming you're using Devise or similar
   before_action :set_booking, only: %i[ show edit update destroy ]
   before_action :set_room, only: [:new, :create]
 
@@ -65,11 +66,19 @@ class BookingsController < ApplicationController
   def destroy
     # Find the booking by its id and destroy it
     @booking = Booking.find(params[:id])
-    @booking.destroy!
 
-    respond_to do |format|
-      format.html { redirect_to bookings_url, notice: "Booking was successfully destroyed." }
-      format.json { head :no_content }
+    # Only allows deletion if the current user owns the booking
+    if current_user.admin?
+      @booking.destroy
+      respond_to do |format|
+        format.html { redirect_to bookings_url, notice: "Booking was successfully destroyed." }
+        format.json { head :no_content }
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to bookings_url, notice: "You are not authorized to delete this booking." }
+        format.json { head :no_content }
+      end
     end
   end
 
