@@ -6,11 +6,10 @@
     <%= render @booking %>
 
     <div>
-      <%= link_to "Edit this booking", edit_booking_path(@booking), class: "btn btn-info" %> |
-      <%= link_to "Back to bookings", bookings_path, class: "btn btn-secondary" %> |
-      <%= link_to "Back to rooms", rooms_path, class: "btn btn-secondary" %>
-
-      <%= button_to "Delete", @booking, method: :delete, class: "btn btn-danger my-3" %>
+      <%= link_to "Edit", edit_booking_path(@booking), class: "btn btn-info" %> |
+      <%= link_to "Bookings", bookings_path, class: "btn btn-secondary" %> |
+      <%= link_to "Rooms", rooms_path, class: "btn btn-secondary" %>
+      <%= button_to "Delete", @booking, method: :delete, style: "text-decoration: none;", class: "btn btn-danger my-3" %>
     </div>
   </div>
 </div>
