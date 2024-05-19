@@ -1,5 +1,4 @@
 <!-- app/views/shared/_banner.html.erb -->
-
 <div class="bsb-hero-5 px-3 bsb-overlay banner-background-image">
   <div class="container-fluid">
     <div class="row justify-content-md-center align-items-center">
@@ -10,7 +9,6 @@
         <p class="lead text-white text-center mb-2 d-flex justify-content-sm-center">
           <span class="col-12 col-sm-10 col-md-8 col-xxl-7">Find your perfect room, make it your own!</span>
         </p>
-
         <!-- Conditional content based on user authentication -->
         <% if user_signed_in? %>
           <div style="display: flex;" class="justify-content-sm-center mb-2">
@@ -19,8 +17,33 @@
           <div style="display: flex; gap: 10px;" class="justify-content-sm-center mb-5">
             <div class="d-grid gap-2 d-sm-flex">
               <%= link_to "Logout", destroy_user_session_path, method: :delete, data: { turbo_method: :delete }, class: "btn btn-danger" %>
-              <%= link_to "Add New Room", new_room_path, class: "btn btn-success" %>
-              
+              <%# <%= link_to "Add New Room", new_room_path, class: "btn btn-success" %>
+
+              <!-- Button trigger modal -->
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                List your Room
+              </button>
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <%# <h1 class="modal-title fs-5" id="exampleModalLabel">Delete Confirmation</h1> %>
+                        <h3 id="new_room_title" class="text-center text-muted mt-2">List room confirmation</h3>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        Are you sure you want to add new room?
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <%= link_to "Start Listing", new_room_path, class: "btn btn-primary" %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               <%# Implement conditions to show/hide my booking button %>
               <% unless controller_name == "bookings" && action_name == "index" %>
                 <%= link_to "My Bookings", bookings_path, class: "btn btn-info" %>
