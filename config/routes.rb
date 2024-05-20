@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   resources :bookings
   resources :rooms do
     resources :bookings, only: [:new, :create, :index, :show]
+    # post :share, on: :member
   end
+
   root "pages#home"
   devise_for :users, controllers: {
         sessions: 'users/sessions',
