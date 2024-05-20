@@ -1,116 +1,143 @@
+
 <div id="<%= dom_id room %>"data-controller="share" 
   data-share-url-value="<%= room_url(room) %>">
-  <p>
-    <strong>Room Picture:</strong>
-    <%= content_tag(:p, room.room_picture, data: {
-      share_target: "room_picture"
-    }) %>
-  </p>
+  
+  <div class="container">
+    <p>
+      <strong>Room Picture:</strong>
+      <%= content_tag(:p, room.room_picture, data: {
+        share_target: "room_picture"
+      }) %>
+    </p>
+  
+    <div class="row">
+      <div class="col-sm">
+        <p>
+          <strong>Room name:</strong>
+          <%= content_tag(:p, room.room_name, data: {
+            share_target: "room_name"
+          }) %>
+        </p>
+      </div>
+      <div class="col-sm">
+        <p>
+          <strong>Room size:</strong>
+          <%= content_tag(:p, room.room_size, data: {
+            share_target: "room_size"
+          }) %>
+        </p>
+      </div>
+      <div class="col-sm">
+        <p>
+          <strong>Room class:</strong>
+          <%= content_tag(:p, room.room_class, data: {
+            share_target: "room_class"
+          }) %>
+        </p>
+      </div>
+    </div>
 
-  <p>
-    <strong>Room name:</strong>
-    <%= content_tag(:p, room.room_name, data: {
-      share_target: "room_name"
-    }) %>
-  </p>
+    <div class="row">
+      <div class="col-sm">
+        <p>
+          <strong>Room status:</strong>
+          <%= content_tag(:p, room.room_status, data: {
+            share_target: "room_status"
+          }) %>
+        </p>
+      </div>
+      <div class="col-sm">  
+        <p>
+          <strong>Room address:</strong>
+          <%= content_tag(:p, room.room_address, data: {
+            share_target: "room_address"
+          }) %>
+        </p>
+      </div>
+      <div class="col-sm">
+        <p>
+          <strong>Room city:</strong>
+          <%= content_tag(:p, room.room_city, data: {
+            share_target: "room_city"
+          }) %>
+        </p>
+      </div>
+    </div>
 
-  <p>
-    <strong>Room size:</strong>
-    <%= content_tag(:p, room.room_size, data: {
-      share_target: "room_size"
-    }) %>
-  </p>
 
-  <p>
-    <strong>Room class:</strong>
-    <%= content_tag(:p, room.room_class, data: {
-      share_target: "room_class"
-    }) %>
-  </p>
+    <div class="row">
+      <div class="col-sm">
+        <p>
+          <strong>Room state:</strong>
+          <%= content_tag(:p, room.room_state, data: {
+            share_target: "room_state"
+          }) %>
+        </p>
+      </div>
+      <div class="col-sm">
+        <p>
+          <strong>Room zip:</strong>
+          <%= content_tag(:p, room.room_zip, data: {
+            share_target: "room_zip"
+          }) %>
+        </p>
+      </div>
+      <div class="col-sm">
+        <p>
+          <strong>Room country:</strong>
+          <%= content_tag(:p, room.room_country, data: {
+            share_target: "room_country"
+          }) %>
+        </p>
+      </div>
+    </div>
 
-  <p>
-    <strong>Room status:</strong>
-    <%= content_tag(:p, room.room_status, data: {
-      share_target: "room_status"
-    }) %>
-  </p>
+    <div class="row">
+      <div class="col-sm">
+        <p>
+          <strong>Room price:</strong>
+          <%= content_tag(:p, room.room_price, data: {
+            share_target: "room_price"
+          }) %>
+        </p>
+      </div>
+      <div class="col-sm">  
+        <p>
+          <strong>Room description:</strong>
+          <%= content_tag(:p, room.room_description, data: {
+            share_target: "room_description"
+          }) %>
+        </p>
+      </div>
+      <div class="col-sm">
+        <p>
+          <strong>Room smoke:</strong>
+          <%= content_tag(:p, room.room_smoke, data: {
+            share_target: "room_smoke"
+          }) %>
+        </p>
+      </div>
+    </div>
 
-  <p>
-    <strong>Room address:</strong>
-    <%= content_tag(:p, room.room_address, data: {
-      share_target: "room_address"
-    }) %>
-  </p>
-
-  <p>
-    <strong>Room city:</strong>
-    <%= content_tag(:p, room.room_city, data: {
-      share_target: "room_city"
-    }) %>
-  </p>
-
-  <p>
-    <strong>Room state:</strong>
-    <%= content_tag(:p, room.room_state, data: {
-      share_target: "room_state"
-    }) %>
-  </p>
-
-  <p>
-    <strong>Room zip:</strong>
-    <%= content_tag(:p, room.room_zip, data: {
-      share_target: "room_zip"
-    }) %>
-  </p>
-
-  <p>
-    <strong>Room country:</strong>
-    <%= content_tag(:p, room.room_country, data: {
-      share_target: "room_country"
-    }) %>
-  </p>
-
-  <p>
-    <strong>Room price:</strong>
-    <%= content_tag(:p, room.room_price, data: {
-      share_target: "room_price"
-    }) %>
-  </p>
-
-  <p>
-    <strong>Room description:</strong>
-    <%= content_tag(:p, room.room_description, data: {
-      share_target: "room_description"
-    }) %>
-  </p>
-
-  <p>
-    <strong>Room smoke:</strong>
-    <%= content_tag(:p, room.room_smoke, data: {
-      share_target: "room_smoke"
-    }) %>
-  </p>
-
-  <p>
-    <strong>Number of beds:</strong>
-    <%= content_tag(:p, room.number_of_beds, data: {
-      share_target: "number_of_beds"
-    }) %>
-  </p>
-
-  <p>
-    <strong>Bed size:</strong>
-    <%= content_tag(:p, room.room_size, data: {
-      share_target: "room_size"
-    }) %>
-  </p>
-
-  <p>
-    <strong>Room phone:</strong>
-    <%= content_tag(:p, room.room_phone, data: {
-      share_target: "room_phone"
-    }) %>
-  </p>
+    <div class="row">
+      <div class="col-sm">
+        <p>
+          <strong>Number of beds:</strong>
+          <%= content_tag(:p, room.number_of_beds, data: {
+            share_target: "number_of_beds"
+          }) %>
+        </p>
+      </div>
+      <div class="col-sm">
+        <p>
+          <strong>Room phone:</strong>
+          <%= content_tag(:p, room.room_phone, data: {
+            share_target: "room_phone"
+          }) %>
+        </p>
+      </div>
+    </div>
+  </div>
   <%= button_to "Share", "", data: { action: "click->share#share" }, class: "btn btn-secondary" %>
   <%= content_tag(:p, "", class:"result", data: { share_target: "result" }) %>
 </div>
