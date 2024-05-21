@@ -31,9 +31,8 @@ class RoomsController < ApplicationController
 
   def share
     # Your share logic here
-    @room = Room.find(params[:id])
-    @room.increment!(:share_count) # Increment the share count by 1
-    redirect_to @room, notice: "Room shared successfully!"
+    @room = Room.find(params[:room_id])
+    redirect_to @room # , notice: "Room shared successfully!"
   end
 
   # GET /rooms/new
