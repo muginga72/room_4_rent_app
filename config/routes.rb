@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   resources :bookings
   resources :rooms do
     resources :bookings, only: [:new, :create, :index, :show]
-    # post :share, on: :member
+    get "/share", as: "share", to: "rooms#share"
   end
 
   root "pages#home"
